@@ -9,7 +9,6 @@ import { RouterLink, RouterView } from "vue-router";
   <div class="wrapper">
    <suspense> 
       <RouterView/>
-      <div>merge</div>
     </suspense>
   </div>
  

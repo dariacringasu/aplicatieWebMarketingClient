@@ -114,21 +114,39 @@ function searchVideos() {
 </template>
 
 <style scoped> 
+h3{
+  background-color: white;
+  -webkit-background-clip: text;
+  margin-left: -25%;
+  top:30px;
+  font-family: "Archivo Black", sans-serif;
+  font-weight: normal;
+  font-size: 3.5em;
+  text-align: center;
+}
+
+
+
 .content-table {
     border-collapse: collapse;
-    margin: 25px 0;
+    /* margin: 120px 100px; */
+    margin-left: 30px;
+    margin-top: 30px;
     font-size: 0.9em;
-    width: 400px;
+    width: 100vh;
+    max-height: 5px;
     border-radius: 5px 5px 0 0;
     overflow-y: scroll;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    
 }
 
 .content-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
+    background-color: rgba(255,255,255,0.7);
+    color: #625d5d;
     text-align: left;
     font-weight: bold;
+    overflow-y: scroll;
 }
 
 .content-table th,
@@ -137,19 +155,31 @@ function searchVideos() {
 }
 
 .content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #625d5d;
 }
 
 .content-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    color: #625d5d;
+    /* background-color: rgba(255,255,255,0.7); */
 }
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #625d5d;
 }
 
 .content-table tbody tr.active-row {
     font-weight: bold;
-    color: #009879;
+    color: #625d5d;
+    background-color: rgba(255,255,255,0.7);
+}
+
+input{
+  margin-left:5%;
+  margin-top: 7%;
+  opacity: 0.5;
+  background: rgba(255,255,255,0.1);
+  color: #111;
+  height: 25px;
+  width: 230px;
 }
 </style>

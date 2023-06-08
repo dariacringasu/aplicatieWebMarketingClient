@@ -66,7 +66,7 @@ fetchPendingVideos();
 
 <template>
 
-    					<h3>Listed Videos</h3>
+    					<h3>Pending Videos</h3>
               <div class="container">
     <table class="content-table" id="myTable">
         <thead>

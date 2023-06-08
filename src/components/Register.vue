@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive, computed} from 'vue';
 import router from '@/router'
+
 
 
 const email = ref("");
@@ -9,6 +10,14 @@ const password =ref("");
 const confirmPassword = ref("");
 const username = ref("");
 const address = ref("");
+
+const isEmailNull = ref("");
+const isCompanyNameNull = ref("");
+const isPasswordNull = ref("");
+const isUsernameNull = ref("");
+const isAddressNull = ref("");
+const isConfirmPasswordNull = ref("");
+const isConfirmPasswordCorrect = ref("");
 
 
 function getCurrentDate() {
@@ -27,6 +36,56 @@ function getCurrentDate() {
 
 
 async function register() {
+  if (email.value.trim() === '' || companyName.value.trim() === '' || username.value.trim() === '' || address.value.trim() === '' || password.value.trim() === '' ||confirmPassword.value.trim() === '') {
+    if(email.value.trim() === ''){
+      isEmailNull.value = "Email is required";
+    }
+     else {
+      isEmailNull.value = "";
+    }
+    if (companyName.value.trim() === '') {
+      isCompanyNameNull.value = "Company name is required";
+    }
+    else{
+      isCompanyNameNull.value = "";
+    }
+    if (username.value.trim() === '') {
+    isUsernameNull.value  = "Username is required";
+  }
+  else{
+    isUsernameNull.value = "";
+  }
+  if (address.value.trim() === '') {
+    isAddressNull.value = "Address is required";
+  }
+  else{
+    isAddressNull.value = "";
+  }
+  if (password.value.trim() === '') {
+    isPasswordNull.value = "Password is required";
+  }
+  else{
+    isPasswordNull.value = "";
+  }
+  
+  if (confirmPassword.value.trim() === '') {
+    isConfirmPasswordNull.value = "Confirm password is required";
+  }
+  else{
+    isConfirmPasswordNull.value = "";
+  }
+    return;
+  }
+
+  if(confirmPassword.value !== password.value){
+    isConfirmPasswordCorrect.value = "Confirm password is incorrect";
+    return;
+  } 
+  else{
+    isConfirmPasswordCorrect.value = "";
+  }
+
+  
   const response = await fetch("/api/auth/register", {
     method: "POST",
     headers: {
@@ -41,12 +100,27 @@ async function register() {
       dateOfJoin: getCurrentDate()
     }),
   });
+
   if (response.status === 200) {
-    router.push("/login")
+    if(confirm("Registration successful! We have sent a confirmation link to your email.")){
+      router.push("/login")
+    }
   } else {
     console.log("Error");
   }
 };
+
+const currentType = ref('password');
+
+function seePassword() {
+  if (currentType.value === 'password') {
+    currentType.value = 'text';
+  } else {
+    currentType.value = 'password';
+  }
+}
+
+
 </script>
 
 <template>
@@ -59,11 +133,15 @@ async function register() {
     </div>
 
     <div class="input-field">
-      <input type="text" placeholder="email" v-model="email" class="input" required> 
+      <input type="text" placeholder="email" v-model="email" id="email"
+      class="input" required> 
       <i class='bx bx-user'></i>
     </div>
+    <!-- <span v-if="!reactiveData.isEmailValid">Invalid email format</span> -->
+
+
     <div class="input-field">
-      <input type="text" placeholder="company name" v-model="companyName" class="input" required> 
+      <input type="text" placeholder="company name" v-model="companyName" id="companyName" class="input" required> 
       <i class='bx bx-briefcase-alt'></i>
     </div>
     <div class="input-field">
@@ -75,16 +153,31 @@ async function register() {
       <i class='bx bx-home-alt'></i>
     </div>
     <div class="input-field">
-      <input type="text" placeholder="password" v-model="password" class="input" required> 
-      <i class='bx bx-lock-alt'></i>
+    <input placeholder="password" v-model="password" :type="currentType" class="input" required> 
+    <i class='bx bx-lock-alt'></i>
+    <div id="eye">
+      <i @click="seePassword" class='bx' :class="currentType === 'password' ? 'bx-low-vision' : 'bx-show-alt'"></i>
     </div>
+  </div>
     <div class="input-field">
-      <input type="text" placeholder="confirm password" v-model="confirmPassword" class="input" required> 
+      <input type="password" placeholder="confirm password"
+      v-model="confirmPassword" class="input" required> 
       <i class='bx bx-lock-alt'></i>
     </div>
    
     <div class="input-field">
       <input type="submit" @click="register" value="Register" class="submit"> 
+    </div>
+
+    <div class="errors">
+      <i v-if="isEmailNull || isCompanyNameNull || isUsernameNull || isAddressNull || isPasswordNull || isConfirmPasswordNull || isConfirmPasswordCorrect" class='bx bx-message-rounded-error'></i>
+      <p v-if="isEmailNull">{{ isEmailNull }}</p> 
+      <p v-if="isCompanyNameNull"> {{ isCompanyNameNull }}</p>
+      <p v-if="isUsernameNull"> {{ isUsernameNull }}</p>
+      <p v-if="isAddressNull"> {{ isAddressNull }}</p>
+      <p v-if="isPasswordNull">{{ isPasswordNull }}</p>
+      <p v-if="isConfirmPasswordNull">{{isConfirmPasswordNull}}</p>
+      <p v-if="isConfirmPasswordCorrect">{{ isConfirmPasswordCorrect }}</p>
     </div>
  </div>
 </div>
@@ -109,6 +202,39 @@ async function register() {
     
     
 } 
+#eye {
+  position: absolute;
+  left: 160%;
+  top:30%;
+  bottom: 0;
+  cursor: pointer;
+  /* height: 200px; */
+} 
+.errors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+  width: 87%;
+  margin:5px;
+  }
+
+  .errors p {
+    font-size: 14px;
+    color: #111;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .errors  i {
+    height: 50px;
+    margin-left: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
  .box{
     display: flex;
     justify-content: center;
@@ -175,5 +301,7 @@ i{
 .submit:hover{
     box-shadow: 1px 5px 7px 1px #625D5D;
 }
+
+
 
 </style>

@@ -8,6 +8,8 @@ import AllClients from "../views/AllClientsView.vue";
 import VideoPlayer from "../views/VideoPlayerView.vue";
 import PendingVideos from "../views/PendingVideosView.vue";
 import UserProfile from "../views/UserProfileView.vue";
+import ConfirmedEmail from "../views/ConfirmedEmailView.vue";
+import ApprovedVideos from "../views/ApprovedVideosView.vue";
 
 import Login from "../components/Login.vue";
 
@@ -19,7 +21,7 @@ import QrCodeGenerator from "../components/QrCodeGenerator.vue";
 
 
 import { hasUserRole, UserRoles } from '@/components/utils/hasUserRole';
-import ApprovedVideos from "../components/ApprovedVideos.vue";
+
 import store from "../store";
 
 
@@ -91,6 +93,12 @@ const router = createRouter({
       path:"/otheruserprofile/:userId",
       name:"otheruserprofile",
       component: OtherUserProfile,
+    },
+    {
+      path: "/confirmAccount",
+      name: "confirmAccount",
+      component: ConfirmedEmail,
+      params: {email: String}
     }
     
     ]

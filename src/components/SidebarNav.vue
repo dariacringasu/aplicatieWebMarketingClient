@@ -1,14 +1,18 @@
 <script setup>
+import { useRoute } from 'vue-router';
+import { ref } from "vue";
 import router from '../router';
 import { computed } from 'vue';
 import store from "../store";
 import { handleLogout } from '@/components/utils/performLogout';
-// import handleLogout from './utils/performLogout';
+
+const url = window.location.href;
 
 const role = computed(() => store.getters.getCurrentUser.role);
 const companyName = computed(() => store.getters.getCurrentUser.companyName);
 const email = computed(() => store.getters.getCurrentUser.email);
 const userId = computed(() => store.getters.getCurrentUser.userId);
+
 
 function goToUserProfile(){
     router.push("/userprofile");
@@ -29,6 +33,15 @@ function goAllClients(){
 function goVideoPlayer(){
     router.push("/videoplayer");
 }
+
+function goApprovedVideos(){
+  router.push("/approvedvideos");
+}
+
+function goPendingVideos(){
+  router.push("/pendingvideos");
+}
+
 </script>
 
 <template>
@@ -45,21 +58,27 @@ function goVideoPlayer(){
       
     </div>
     <ul>
-      <li @click="goAddVideo">
+      <li v-if="role === 'USER'" @click="goAddVideo">
         <!-- <img src="src/components/icons/images/dashboard.png"> -->
         <p >Add New Video </p></li>
-      <li  @click="goToUserProfile">
+      <li @click="goToUserProfile">
         <!-- <img src="src/components/icons/images/dashboard.png"> -->
         <p>User Profile</p></li>
       <li @click="goAllClients">
         <!-- <img src="src/components/icons/images/dashboard.png"> -->
         <p>All Clients</p></li>
-      <li @click="goVideoPlayer">
+      <li v-if="role === 'ADMIN'" @click="goVideoPlayer">
         <!-- <img src="src/components/icons/images/dashboard.png"> -->
         <p>Video Player</p></li>
-      <li @click="goMainPage">
+      <li v-if="url !== 'http://localhost:5173/mainpage'" @click="goMainPage">
         <!-- <img src="src/components/icons/images/dashboard.png"> -->
         <p>Main Page</p></li>
+        <li v-if="role === 'ADMIN'" @click="goApprovedVideos">
+        <!-- <img src="src/components/icons/images/dashboard.png"> -->
+        <p>Approved Videos</p></li>
+        <li v-if="role === 'ADMIN'" @click="goPendingVideos">
+        <!-- <img src="src/components/icons/images/dashboard.png"> -->
+        <p>Pending Videos</p></li>
     </ul>
     <ul>
       <li @click="handleLogout">

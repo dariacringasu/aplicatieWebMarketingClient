@@ -1,12 +1,13 @@
 <script setup>
 import { computed } from "@vue/reactivity";
 import { ref } from "vue";
+import store from "../store";
 import UserSimpleDetails from "../components/user/userDetails.vue";
 import router from '../router';
 
 const currentPageIndex = ref(1);
 
-
+const role = computed(() => store.getters.getCurrentUser.role);
 
 const response = await fetch("/api/client/paged/basicDetails?page=" + (currentPageIndex.value - 1) + "&numberOfUsersPerPage=" + 9);
 const tempUsers = ref(await response.json());
@@ -115,7 +116,7 @@ function searchUsers() {
                             :companyName="user.companyName" :email="user.email"  :id="user.id"
                             cursor="pointer" @click="redirectToUserPage(user.id)" />
                            
-                            <button @click="deleteUser(user.id)">Delete</button>
+                            <button v-if="role === 'ADMIN'" @click="deleteUser(user.id)">Delete</button>
                         </div>
                         
                     </div>
