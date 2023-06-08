@@ -8,7 +8,10 @@
   </head>
   <body>
     <div id="app"></div>
-<h1>test</h1>
+    <script> import { RouterLink, RouterView } from "vue-router";</script>
+    <suspense> 
+      <RouterView/>
+    </suspense>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
