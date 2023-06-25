@@ -41,10 +41,12 @@ const deleteUser = async (userId) => {
 
 // fetchClientsBasicDetails();
 
-function redirectToUserPage(userId) {
-    router.push({ name: 'otheruserprofile', params: { userId } });
-    // console.log("redirecting to user page");
-}
+// function redirectToUserPage(userId) {
+//     router.push({ name: 'otheruserprofile', params: { userId } });
+//     // router.push("/otheruserprofile/"+userId);
+//     console.log(userId);
+//     // console.log("redirecting to user page");
+// }
 
 let arrayOfPageIndexes = Array.from({ length: numberOfUsers / 9 + 1 }, (x, i) => i + 1);
 
@@ -114,15 +116,12 @@ function searchUsers() {
                             <div v-for="user in filteredUsers" class="temp" :key="user.id">
                             <UserSimpleDetails  class="user"
                             :companyName="user.companyName" :email="user.email"  :id="user.id"
-                            cursor="pointer" @click="redirectToUserPage(user.id)" />
+                            cursor="pointer" />
                            
                             <button v-if="role === 'ADMIN'" @click="deleteUser(user.id)">Delete</button>
                         </div>
                         
                     </div>
-
-<!-- <div id="page-indexes-container">                      -->
-
 
 </div>
 <div id="page-indexes-container">

@@ -1,13 +1,34 @@
 <script setup>
 import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
 import router from '../router';
 
 const route = useRoute();
 const email = route.query.email;
+// console.log(email);
 
+onMounted(() => {
+  console.log(email)
+  fetch("/api/client/confirmAccount/"+email , {
+    method: 'POST'
+  })
+    .then(response => {
+      // Handle the response as needed
+      if (response.ok) {
+        // Account confirmation successful
+        console.log('Account confirmed');
+      } else {
+        // Account confirmation failed
+        console.error('Account confirmation failed');
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred during account confirmation:', error);
+    });
+});
 
 function goLogin(){
-    router.push("/login");
+    router.push("/");
 }
 </script>
 

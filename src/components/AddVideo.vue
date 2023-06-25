@@ -3,6 +3,7 @@ import { computed } from '@vue/reactivity';
 import store from "../store";
 import axios from 'axios';
 import { ref } from 'vue';
+import router from '../router';
 
 
 export default {
@@ -44,6 +45,7 @@ export default {
 
         if(response2.ok){
           alert("Video uploaded successfully!");
+          router.push("/mainpage");
         }
         else {
       throw new Error('Failed to upload video.');

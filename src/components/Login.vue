@@ -5,14 +5,10 @@ import store from "../store";
 import { computed } from "@vue/reactivity";
 
 const companyName = computed(() => store.getters.getCurrentUser.companyName);
-console.log(companyName.value)
 
 const email = ref("");
 const password = ref("");
-
-
 const currentType = ref('password');
-
 const isEmailOrPasswordValid = ref("");
 
 async function login() {
@@ -64,15 +60,6 @@ function goToRegister(){
       <input type="text" placeholder="email" v-model="email" class="input" required> 
       <i class='bx bx-user'></i>
     </div>
-    <!-- <div class="input-field">
-      <input type="text" placeholder="password" v-model="password" class="input" :type="currentType" required> 
-      <i class='bx bx-lock-alt'></i>
-      <div id="eye" >
-      
-          <i @click="seePassword" class='bx bx-low-vision'></i>
-     
-      </div>
-    </div> -->
 
     <div class="input-field">
     <input placeholder="password" v-model="password" :type="currentType" class="input" required> 
@@ -91,10 +78,6 @@ function goToRegister(){
     </div>
 
     <div class="two-col">
-            <!-- <div class="one">
-               <input type="checkbox" name="" id="check">
-               <label for="check"> Remember Me</label>
-            </div> -->
             <div class="one">
                 <label><a style="color: #111" @click="goToRegister">Don't have an account? Sign up.</a></label>
             </div>
@@ -118,7 +101,6 @@ function goToRegister(){
   top:30%;
   bottom: 0;
   cursor: pointer;
-  /* height: 200px; */
 } 
 
 .position {
@@ -133,7 +115,6 @@ function goToRegister(){
 body{
     background-image: url("src/components/icons/images/background.png");
     background-size: cover;
-    /* background-position: center; */
     background-attachment: fixed;
     background-repeat: no-repeat;
     justify-content: center;   
@@ -180,7 +161,6 @@ header{
 }
 i{
     position: relative;
-    /* top: -30px; */
     left: -260px;
     color: #111;
 }
@@ -207,7 +187,6 @@ i{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* color: #625D5D; */
     font-size: small;
     margin-top: 10px;
 }
@@ -219,7 +198,5 @@ label a{
     text-decoration: none;
     color: #fff;
 } 
-
-
 
 </style>

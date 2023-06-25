@@ -108,7 +108,7 @@ function goAllClients(){
     <section class="one">
       <!-- <div> -->
       <h1 class="gradient-text">publicity</h1>
-     <!-- <img src="src\components\icons\images\publicity-low-resolution-logo-white-on-transparent-background (1).png"> -->
+     
 <div class="content">
       <!-- cerc 1 -->
       <div class="bottom">
@@ -136,6 +136,7 @@ function goAllClients(){
 
         </div>
       </div>
+      <h3>enrolled users</h3>
       
 
 <!-- cerc 2 -->
@@ -164,20 +165,22 @@ function goAllClients(){
 
         </div>
       </div>
+      <h3>videos</h3>
       </div>
 
       <div class="text" style="top:60px">
         <div class="textUsers">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-           sed do eiusmod tempor incididunt ut labore et dolore 
-            magna aliqua. Augue lacus viverra vitae congue eu 
-            consequat ac felis donec.<br/>
+          Our platform offers a comprehensive suite of tools to
+           enhance your video marketing campaigns. With our innovative 
+           QR code technology, you can track and analyze real-time
+            statistics, gaining valuable insights into audience 
+            engagement and campaign performance.<br/>
         </div>
-        <div class="textVideos" style="top:20px">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-           sed do eiusmod tempor incididunt ut labore et dolore 
-            magna aliqua. Augue lacus viverra vitae congue eu 
-            consequat ac felis donec.<br/>
+        <div class="textVideos" style="top:70px">
+          Koin countless businesses who have successfully leveraged 
+          our services to elevate their video marketing game. 
+          Experience the power of data-driven decision-making and 
+          unlock the true potential of your video campaigns today.<br/>
         </div>
       </div>
     </div>
@@ -185,8 +188,25 @@ function goAllClients(){
     <section class="two" ref="sectionElement">
        <h1 id="h1secondsection"> How to make yourself <br/>stand out?</h1>
         <div class="secondcontent">
-          <div class="firstdiv">text</div>
-          <div class="seconddiv">text</div>
+          <div class="firstdiv">
+            Our platform empowers you to stand out in the 
+            competitive world of video marketing. By utilizing 
+            our innovative features, your videos will be 
+            prominently displayed in public places, captivating
+             audiences and generating buzz. Each video will be 
+             associated with a unique QR code, which when scanned,
+              unlocks a wealth of valuable statistics.</div>
+          <div class="seconddiv">
+            Our robust analytics provide detailed insights into
+             viewer engagement, enabling you to fine-tune your 
+             marketing strategies for maximum impact. Stay ahead
+              of the curve with real-time data, identify trends, 
+              and make informed decisions to optimize your campaigns. 
+              With our platform, your videos become powerful marketing
+               assets, driving brand awareness and delivering measurable
+                results. Elevate your video marketing game and leave a
+                 lasting impression on your audience.
+          </div>
         </div>
 
        
@@ -216,6 +236,11 @@ h1 {
   margin-bottom: 0;
   margin-bottom: 1.5em;
 
+}
+
+h3{
+  margin-top: 40px;
+  margin-left: -80px;
 }
 
 *{
@@ -470,14 +495,22 @@ section{
   height: 100%;
   width: 40%;
   opacity: 4.5; 
-    background: rgba(255,255,255,0.5)
+  background: rgba(255,255,255,0.5);
+  padding: 10px;
+  color: #4b4c4e;
+  font-size: 16px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .seconddiv{
   height: 100%;
   width: 40%;
   left:50px;
   opacity: 4.5; 
-  background: rgba(255,255,255,0.5)
+  background: rgba(255,255,255,0.5);
+  padding: 10px;
+  color: #4b4c4e;
+  font-size: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 

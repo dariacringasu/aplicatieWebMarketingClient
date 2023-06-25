@@ -61,6 +61,26 @@ async function approve(videoId) {
   }
 }
 
+async function deleteVideo(videoId) {
+    if (confirm("Are you sure you want to delete this video?")) {
+    try {
+      const approveResponse = await fetch("/api/video/delete/" + videoId, {
+        method: 'DELETE',
+      });
+
+      if (approveResponse.ok) {
+        console.log(`Video with ID ${videoId} deleted.`);
+        await fetchPendingVideos(); // Refresh the list of pending videos
+      } else {
+        throw new Error('Failed to delete video.');
+      }
+    } catch (error) {
+      // Handle error
+      console.error(error);
+    }
+  }
+}
+
 fetchPendingVideos();
 </script>
 
@@ -76,6 +96,7 @@ fetchPendingVideos();
             <th>Description</th>
             <th>Date of Posting</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="tableBody" v-for="(video,index) in pendingVideos" :key="video.id">
@@ -85,6 +106,7 @@ fetchPendingVideos();
 				<td>{{ video.description }}</td>
 				<td>{{ video.dateOfPosting }}</td>
                 <td> <button @click="approve(video.id)">Approve</button></td>
+                <td> <button @click="deleteVideo(video.id)">Delete</button></td>
 			</tr>
         </tbody>
       </table>

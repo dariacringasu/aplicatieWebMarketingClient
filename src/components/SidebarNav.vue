@@ -18,6 +18,10 @@ function goToUserProfile(){
     router.push("/userprofile");
 }
 
+function goToStatistics(){
+  router.push("/statistics");
+}
+
 function goAddVideo(){
     router.push("/addvideo");
 }
@@ -45,58 +49,62 @@ function goPendingVideos(){
 </script>
 
 <template>
-<!-- <div class="header"> -->
   <div class="side-nav">
     <div class="user">
-      <!-- <img src="src/components/icons/images/user.png" class="user-img"> -->
+      <img src="src/components/icons/images/adv.png" class="user-img">
       <div>
         <h2>{{ companyName }}</h2>
         <p>{{email}}</p>
         <p v-if="role === 'ADMIN'"> ADMIN</p>
       </div>
-      <!-- <img src="src/components/icons/images/star.png" class="star-img"> -->
+  
       
     </div>
     <ul>
       <li v-if="role === 'USER'" @click="goAddVideo">
-        <!-- <img src="src/components/icons/images/dashboard.png"> -->
+        <img src="src/components/icons/images/add.png">
         <p >Add New Video </p></li>
-      <li @click="goToUserProfile">
-        <!-- <img src="src/components/icons/images/dashboard.png"> -->
-        <p>User Profile</p></li>
-      <li @click="goAllClients">
-        <!-- <img src="src/components/icons/images/dashboard.png"> -->
-        <p>All Clients</p></li>
+
+      <li v-if="role === 'USER'" @click="goToUserProfile">
+        <img src="src/components/icons/images/profile.png">
+        <p>My Profile</p></li>
+
+      <li v-if="role === 'ADMIN'" @click="goAllClients">
+        <img src="src/components/icons/images/users.png">
+        <p>All Users</p></li>
+
       <li v-if="role === 'ADMIN'" @click="goVideoPlayer">
-        <!-- <img src="src/components/icons/images/dashboard.png"> -->
+        <img src="src/components/icons/images/video-player.png">
         <p>Video Player</p></li>
+
       <li v-if="url !== 'http://localhost:5173/mainpage'" @click="goMainPage">
-        <!-- <img src="src/components/icons/images/dashboard.png"> -->
+        <img src="src/components/icons/images/icons8-website-50.png">
         <p>Main Page</p></li>
-        <li v-if="role === 'ADMIN'" @click="goApprovedVideos">
-        <!-- <img src="src/components/icons/images/dashboard.png"> -->
+
+      <li v-if="role === 'ADMIN'" @click="goApprovedVideos">
+        <img src="src/components/icons/images/approve.png">
         <p>Approved Videos</p></li>
-        <li v-if="role === 'ADMIN'" @click="goPendingVideos">
-        <!-- <img src="src/components/icons/images/dashboard.png"> -->
+
+      <li v-if="role === 'USER'" @click="goToStatistics">
+        <img src="src/components/icons/images/reports.png">
+        <p>Reports</p></li>
+
+      <li v-if="role === 'ADMIN'" @click="goPendingVideos">
+        <img src="src/components/icons/images/pending.png">
         <p>Pending Videos</p></li>
     </ul>
     <ul>
       <li @click="handleLogout">
-        <!-- <img src="src/components/icons/images/logout.png"> -->
+        <img src="src/components/icons/images/logout.png">
         <p>Logout</p></li>
     </ul>
   </div>
-<!-- </div> -->
 </template>
 
 <style scoped>
  .header{
   width: auto;
   height: 100vh;
-  /* height: 100%; */
-   /* background-image: url(src/components/icons/images/background.png);
-  background-position: center;
-  background-size: cover;  */
 } 
 .side-nav{
   width: 110px;
@@ -147,9 +155,7 @@ function goPendingVideos(){
 }
 
 .user-img{
-  width: 40px;
-  border-radius: 50%;
-  margin: auto;
+  width: 25.2px;
 }
 
 .star-img{
@@ -200,7 +206,7 @@ ul li p{
 }
 
 .side-nav:hover .user-img{
-  margin:0;
+  margin:0.5;
 }
 
 .side-nav:hover ul li p{

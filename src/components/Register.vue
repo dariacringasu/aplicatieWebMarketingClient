@@ -103,7 +103,7 @@ async function register() {
 
   if (response.status === 200) {
     if(confirm("Registration successful! We have sent a confirmation link to your email.")){
-      router.push("/login")
+      router.push("/")
     }
   } else {
     console.log("Error");

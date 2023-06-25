@@ -10,15 +10,8 @@ import PendingVideos from "../views/PendingVideosView.vue";
 import UserProfile from "../views/UserProfileView.vue";
 import ConfirmedEmail from "../views/ConfirmedEmailView.vue";
 import ApprovedVideos from "../views/ApprovedVideosView.vue";
-
-import Login from "../components/Login.vue";
-
-import AddClient from "../components/AddClient.vue";
-import OtherUserProfile from "../components/OtherUserProfile.vue";
-
-import QrCodeGenerator from "../components/QrCodeGenerator.vue";
-
-
+import VideosStatisticsView from "../views/VideosStatisticsView.vue"
+import OtherUserProfileView from "../views/OtherUserProfileView.vue"
 
 import { hasUserRole, UserRoles } from '@/components/utils/hasUserRole';
 
@@ -37,18 +30,13 @@ const router = createRouter({
         component: MainPage,
         params: { userId: Number }
       },
-       {
-         path: "/addClient",
-       name: "addClient",
-      component: AddClient
-     },
      {
       path: "/addVideo",
       name: "addVideo",
       component: AddVideoView
      },
      {
-      path:"/login",
+      path:"/",
       name:"login",
       component: LoginView
     },
@@ -63,21 +51,14 @@ const router = createRouter({
       component: Register
     },
     {
-      path:"/qr",
-      name:"qr",
-      component: QrCodeGenerator
-    },
-    {
       path:"/allclients",
       name:"allclients",
       component: AllClients
     },
     {
       path:"/userprofile",
-      path:"/userprofile",
       name:"userprofile",
       component: UserProfile,
-      // params: { userId: Number }
     },
     {
       path:"/pendingvideos",
@@ -92,13 +73,18 @@ const router = createRouter({
     {
       path:"/otheruserprofile/:userId",
       name:"otheruserprofile",
-      component: OtherUserProfile,
+      component: OtherUserProfileView,
     },
     {
       path: "/confirmAccount",
       name: "confirmAccount",
       component: ConfirmedEmail,
       params: {email: String}
+    },
+    {
+      path: "/statistics",
+      name: "statistics",
+      component: VideosStatisticsView
     }
     
     ]

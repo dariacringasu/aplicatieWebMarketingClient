@@ -22,7 +22,7 @@ export async function handleLogout() {
     if (response.status === 200) {
       performLogout();
       console.log("logout handle");
-      router.push({ path: "/login" });
+      router.push({ path: "/" });
     } else {
       console.log("Something went wrong");
       performLogout();
